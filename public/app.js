@@ -1,6 +1,6 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
-tg.setHeaderColor('#121519');
+tg.setHeaderColor('#181f28');
 
 const urlParams = new URLSearchParams(window.location.search);
 const offerId = urlParams.get('offer_id');
@@ -10,7 +10,6 @@ if (!offerId) {
     throw new Error("No offer ID");
 }
 
-// Загрузка данных с бэкенда
 fetch(`/api/offer/${offerId}`)
     .then(r => r.json())
     .then(data => {
@@ -34,8 +33,7 @@ fetch(`/api/offer/${offerId}`)
         document.getElementById('accept-btn').innerText = "Offer not found";
     });
 
-// Живой таймер (ровно 7 дней)
-let endTime = Date.now() + 7 * 24 * 60 * 60 * 1000;
+let endTime = Date.now() + 6 * 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000 + 55 * 60 * 1000 + 48 * 1000;
 
 function updateTimer() {
     let diff = endTime - Date.now();
@@ -46,16 +44,18 @@ function updateTimer() {
     const m = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
     const s = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
 
-    document.getElementById('t-days').innerText = d === 1 ? '1 day' : `${d} days`;
-    document.getElementById('t-hours').innerText = h;
-    document.getElementById('t-mins').innerText = m;
-    document.getElementById('t-secs').innerText = s;
+    document.getElementById('t-days').innerText = `${d} days`;
+    document.getElementById('t-h0').innerText = h[0];
+    document.getElementById('t-h1').innerText = h[1];
+    document.getElementById('t-m0').innerText = m[0];
+    document.getElementById('t-m1').innerText = m[1];
+    document.getElementById('t-s0').innerText = s[0];
+    document.getElementById('t-s1').innerText = s[1];
 }
 
 setInterval(updateTimer, 1000);
-updateTimer(); // Мгновенный запуск
+updateTimer();
 
-// TonConnect
 const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
     manifestUrl: window.location.origin + '/tonconnect-manifest.json'
 });
