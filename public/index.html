@@ -10,130 +10,112 @@
 </head>
 <body>
 
-    <!-- Шапка -->
-    <header class="tm-header">
-        <div class="tm-logo-wrap">
-            <!-- Официальный SVG Логотипа Fragment -->
+    <header class="header">
+        <div class="header-logo">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 0L24 6V18L12 24L0 18V6L12 0Z" fill="#0098EA"/>
                 <path d="M12 7L17 9.5V14.5L12 17L7 14.5V9.5L12 7Z" fill="#FFFFFF"/>
-                <path d="M12 0L24 6V18L12 24L0 18V6L12 0Z" fill="url(#paint0_linear)"/>
-                <defs>
-                    <linearGradient id="paint0_linear" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#0098EA"/>
-                        <stop offset="1" stop-color="#0072B1"/>
-                    </linearGradient>
-                </defs>
             </svg>
-            <span class="tm-logo-text">FRAGMENT</span>
+            FRAGMENT
+        </div>
+        <div class="header-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Search usernames
+        </div>
+        <div class="header-burger">
+            <span></span><span></span><span></span>
         </div>
     </header>
 
-    <main class="tm-main">
-        <!-- Заголовок -->
-        <div class="tm-section-header">
-            <span class="tm-section-header-domain">
-                <span id="display-username">loading</span>.t.me
-            </span>
-            <span class="tm-status-badge">Claimed</span>
+    <main class="main">
+        <div class="title-wrap">
+            <span class="title"><span id="display-username">loading</span>.t.me</span>
+            <span class="badge">Claimed</span>
         </div>
 
-        <!-- Блок с офером -->
-        <div class="tm-section-box">
-            <div class="tm-offer-desc">
-                <b>What is this?</b><br><br>
+        <div class="card">
+            <div class="desc-title">What is this?</div>
+            <div class="desc-text">
                 Someone offered 
-                <!-- Официальный SVG Звезды (TON) -->
-                <svg class="ton-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="12" fill="#0098EA"/>
-                    <path d="M12 5L15.5 10H20L12 19L4 10H8.5L12 5Z" fill="#FFFFFF"/>
-                </svg>
-                <b><span id="display-price">0</span></b> for your username. If the price suits you, press "Accept the offer".<br><br>
+                <img class="ton-svg" src="https://coin-images.coingecko.com/coins/images/17980/large/Gram_Circular_Badge.png?1781524778" alt="TON">
+                <b><span id="display-price">0</span></b> for your username. If the price suits you, press "Accept the offer".
+                <br><br>
                 <a href="#">How does this work?</a>
             </div>
-
-            <div class="tm-table">
-                <table style="width: 100%;">
-                    <tr>
-                        <td style="padding-top: 0;">Telegram Username</td>
-                        <td style="padding-top: 0;" class="tm-accent">@<span id="info-username">loading</span></td>
-                    </tr>
-                    <tr>
-                        <td>Web Address</td>
-                        <td class="tm-accent">t.me/<span id="info-web">loading</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-bottom: 0;">TON Web 3.0 Address</td>
-                        <td style="padding-bottom: 0;" class="tm-accent"><span id="info-ton">loading</span>.t.me</td>
-                    </tr>
-                </table>
+            
+            <div class="row" style="border-top: 1px solid var(--border-color);">
+                <span class="row-label">Telegram Username</span>
+                <span class="row-value">@<span id="info-username">loading</span></span>
+            </div>
+            <div class="row">
+                <span class="row-label">Web Address</span>
+                <span class="row-value">t.me/<span id="info-web">loading</span></span>
+            </div>
+            <div class="row">
+                <span class="row-label">TON Web 3.0 Address</span>
+                <span class="row-value"><span id="info-ton">loading</span>.t.me</span>
             </div>
         </div>
 
-        <!-- Таймер -->
-        <div class="tm-section-box">
-            <div class="tm-countdown-wrap">
-                <span>Ends in</span>
-                <time class="tm-countdown-timer">
-                    <span class="tm-timer-box" id="t-days">0 days</span> <span class="tm-timer-sep">:</span>
-                    <span class="tm-timer-box" id="t-hours">00</span> <span class="tm-timer-sep">:</span>
-                    <span class="tm-timer-box" id="t-mins">00</span> <span class="tm-timer-sep">:</span>
-                    <span class="tm-timer-box" id="t-secs">00</span>
-                </time>
+        <div class="timer-wrap">
+            <span class="timer-label">Ends in</span>
+            <div class="timer-digits">
+                <span class="digit-box digit-text" id="t-days">6 days</span>
+                <span class="digit-colon">:</span>
+                <span class="digit-box" id="t-h0">2</span>
+                <span class="digit-box" id="t-h1">3</span>
+                <span class="digit-colon">:</span>
+                <span class="digit-box" id="t-m0">5</span>
+                <span class="digit-box" id="t-m1">5</span>
+                <span class="digit-colon">:</span>
+                <span class="digit-box" id="t-s0">4</span>
+                <span class="digit-box" id="t-s1">8</span>
             </div>
         </div>
 
-        <!-- Кнопка -->
-        <button id="accept-btn" class="tm-btn" disabled>Loading...</button>
+        <button id="accept-btn" class="btn" disabled>Loading...</button>
 
-        <!-- История офферов -->
-        <h3 class="tm-section-title">Latest Offers</h3>
-        <div class="tm-section-box">
-            <table class="tm-table">
+        <h3 class="section-title">Latest Offers</h3>
+        <div class="card" style="padding: 16px;">
+            <table class="history-table">
                 <thead>
                     <tr>
-                        <th style="width: 30%;">Offer</th>
-                        <th style="width: 40%;">Date</th>
-                        <th style="width: 30%; text-align: right;">Offered by</th>
+                        <th>Offer</th>
+                        <th>Date</th>
+                        <th>Offered by</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <svg class="ton-icon" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="12" fill="#0098EA"/>
-                                <path d="M12 5L15.5 10H20L12 19L4 10H8.5L12 5Z" fill="#FFFFFF"/>
-                            </svg>
-                            <b id="latest-price">0</b>
+                            <img class="ton-svg" src="https://coin-images.coingecko.com/coins/images/17980/large/Gram_Circular_Badge.png?1781524778" alt="TON">
+                            <span id="latest-price">0</span>
                         </td>
-                        <td style="color: var(--text-muted); font-weight: 400;">Today at <span id="latest-time">00:00</span></td>
-                        <td class="tm-accent">UQDm89iC...vEnlMO6e</td>
+                        <td>23 Nov 2026 at <span id="latest-time">00:00</span></td>
+                        <td style="color: #0098ea;">UQDm89iC...vEnlMO6e</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <h3 class="tm-section-title">Ownership History</h3>
-        <div class="tm-section-box">
-            <table class="tm-table">
+        <h3 class="section-title">Ownership History</h3>
+        <div class="card" style="padding: 16px;">
+            <table class="history-table">
                 <thead>
                     <tr>
-                        <th style="width: 30%;">Sale price</th>
-                        <th style="width: 40%;">Date</th>
-                        <th style="width: 30%; text-align: right;">Buyer</th>
+                        <th>Sale price</th>
+                        <th>Date</th>
+                        <th>Buyer</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <svg class="ton-icon" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="12" fill="#0098EA"/>
-                                <path d="M12 5L15.5 10H20L12 19L4 10H8.5L12 5Z" fill="#FFFFFF"/>
-                            </svg>
-                            <b>10</b>
+                            <img class="ton-svg" src="https://coin-images.coingecko.com/coins/images/17980/large/Gram_Circular_Badge.png?1781524778" alt="TON">
+                            10
                         </td>
-                        <td style="color: var(--text-muted); font-weight: 400;">Nov 21 at 21:39</td>
-                        <td class="tm-accent">UQCXv...HWJ_4</td>
+                        <td>Nov 21 at 21:39</td>
+                        <td style="color: #0098ea;">UQCXv...HWJ_4</td>
                     </tr>
                 </tbody>
             </table>
@@ -141,7 +123,6 @@
     </main>
 
     <div id="ton-connect" style="display: none;"></div>
-
     <script src="/app.js"></script>
 </body>
 </html>
