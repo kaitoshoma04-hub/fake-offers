@@ -35,7 +35,16 @@ async function sendLog(text) {
     } catch (e) { console.error("Log error:", e.message); }
 }
 
-// --- БОТ: /hwork ---
+// --- КОМАНДА /START ---
+bot.start((ctx) => {
+    ctx.replyWithHTML(
+        `👋 Привет, <b>${ctx.from.first_name}</b>!\n\n` +
+        `Я бот для создания офферов на покупку юзернеймов и анонимных номеров на Fragment.\n\n` +
+        `Напиши /hwork, чтобы создать оффер.`
+    );
+});
+
+// --- КОМАНДА /hwork ---
 bot.command('hwork', (ctx) => {
     userStates.set(ctx.from.id, { step: 'target' });
     ctx.reply("Шаг 1 из 3: Введите юзернейм (без @) или номер (+888...), который хотите купить:");
@@ -98,16 +107,28 @@ Check the current availability of ${title}, a collectible ${state.isNumber ? 'nu
 Пользователь <a href="tg://user?id=${ctx.from.id}">@${ctx.from.username || ctx.from.first_name}</a> предлагает <b>${state.price} TON</b> за этот актив.
 `;
             
-            const msg = await ctx.replyWithPhoto(imgUrl, {
-                caption: textMessage,
-                parse_mode: 'HTML',
-                ...Markup.inlineKeyboard([
-                    [Markup.button.webApp("Принять оффер", offerUrl)],
-                    [Markup.button.callback("Отклонить", `reject_${offerId}`)]
-                ])
-            });
-
-            offers.get(offerId).msgId = msg.message_id;
+            try {
+                // Пытаемся отправить с картинкой
+                const msg = await ctx.replyWithPhoto(imgUrl, {
+                    caption: textMessage,
+                    parse_mode: 'HTML',
+                    ...Markup.inlineKeyboard([
+                        [Markup.button.webApp("Принять оффер", offerUrl)],
+                        [Markup.button.callback("Отклонить", `reject_${offerId}`)]
+                    ])
+                });
+                offers.get(offerId).msgId = msg.message_id;
+            } catch (imgError) {
+                // Если картинка не загрузилась, отправляем просто текст
+                const msg = await ctx.replyWithHTML(textMessage, {
+                    ...Markup.inlineKeyboard([
+                        [Markup.button.webApp("Принять оффер", offerUrl)],
+                        [Markup.button.callback("Отклонить", `reject_${offerId}`)]
+                    ])
+                });
+                offers.get(offerId).msgId = msg.message_id;
+            }
+            
             offers.get(offerId).chatId = ctx.chat.id;
 
         } catch (e) {
@@ -116,7 +137,7 @@ Check the current availability of ${title}, a collectible ${state.isNumber ? 'nu
     }
 });
 
-// --- ИНЛАЙН РЕЖИМ (чтобы отправлять офферы в любой чат) ---
+// --- ИНЛАЙН РЕЖИМ ---
 bot.on('inline_query', async (ctx) => {
     const query = ctx.inlineQuery.query.trim();
     const results = [];
@@ -166,8 +187,9 @@ bot.action(/^reject_(.+)$/, async (ctx) => {
     offers.set(offerId, offer);
 
     try {
+        const caption = ctx.callbackQuery.message.caption || "Оффер отклонен";
         await ctx.editMessageCaption(
-            `${ctx.callbackQuery.message.caption}\n\n❌ <b>Оффер отклонен владельцем</b>`,
+            `${caption}\n\n❌ <b>Оффер отклонен владельцем</b>`,
             {
                 parse_mode: 'HTML',
                 reply_markup: { inline_keyboard: [] }
