@@ -1,7 +1,8 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-// 👇 ВСТАВЬ СЮДА ССЫЛКУ С RENDER (без слэша в конце) 👇
+// 👇 ССЫЛКА НА ТВОЙ БОТ НА RENDER 👇
+// Замени на свою ссылку, которую выдал Render
 const API_BASE_URL = "https://render-bot-brp8.onrender.com"; 
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -25,23 +26,36 @@ if (!offerId) {
             if (data.error) throw new Error(data.error);
             
             // Бот присылает target (юзернейм) и price (цена)
-            const username = data.isNumber ? data.target : `@${data.target}`;
+            const rawTarget = data.target;
+            const isNumber = data.isNumber;
+            const price = data.price;
             
-            document.getElementById('display-username').innerText = username;
-            document.getElementById('display-price').innerText = data.price;
-            document.getElementById('info-username').innerText = username;
-            document.getElementById('info-web').innerText = username;
-            document.getElementById('info-ton').innerText = username;
+            // Форматируем юзернейм (добавляем @ если это не номер)
+            const usernameFormatted = isNumber ? rawTarget : `@${rawTarget}`;
+            const urlFormatted = isNumber ? rawTarget : rawTarget;
+
+            // Заполняем поля
+            document.getElementById('display-username').innerText = `${urlFormatted}.t.me`;
+            document.getElementById('display-price').innerText = price;
             
+            document.getElementById('info-username').innerText = usernameFormatted;
+            document.getElementById('info-web').innerText = urlFormatted;
+            document.getElementById('info-ton').innerText = urlFormatted;
+            
+            // Кнопка
             document.getElementById('accept-btn').innerText = "Accept the offer";
             document.getElementById('accept-btn').disabled = false;
         })
         .catch(e => {
             console.error("Ошибка загрузки:", e);
-            // Если Render спит, покажем заглушку
-            document.getElementById('display-username').innerText = "durov";
-            document.getElementById('display-price').innerText = "1635";
-            document.getElementById('accept-btn').innerText = "Accept the offer";
+            // Если Render не отвечает (спит), показываем сообщение
+            document.getElementById('display-username').innerText = "error.t.me";
+            document.getElementById('display-price').innerText = "0";
+            document.getElementById('info-username').innerText = "error";
+            document.getElementById('info-web').innerText = "error";
+            document.getElementById('info-ton').innerText = "error";
+            
+            document.getElementById('accept-btn').innerText = "Server offline. Try again.";
             document.getElementById('accept-btn').disabled = false;
         });
 }
