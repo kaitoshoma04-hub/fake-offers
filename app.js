@@ -1,9 +1,6 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-// 👇 ССЫЛКА НА ТВОЙ БОТ НА RENDER 👇
-// Замени на свою ссылку, которую выдал Render
-const API_BASE_URL = "https://render-bot-brp8.onrender.com"; 
 
 const urlParams = new URLSearchParams(window.location.search);
 const offerId = urlParams.get('offer_id') || urlParams.get('startapp');
