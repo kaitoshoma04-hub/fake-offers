@@ -7,19 +7,33 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://unpkg.com/@tonconnect/ui@2.0.9/dist/tonconnect-ui.min.js"></script>
     
-    <!-- Официальные стили Fragment из твоего репозитория -->
-    <link href="font-roboto.css@1.css" rel="stylesheet" type="text/css">
-    <link href="bootstrap.min.css@3.css" rel="stylesheet">
-    <link href="bootstrap-extra.css@2.css" rel="stylesheet">
-    <link href="auction.css@94.css" rel="stylesheet">
+    <!-- Твои официальные стили из репозитория -->
+    <link href="font-roboto.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap-extra.css" rel="stylesheet">
+    <link href="auction.css" rel="stylesheet">
     
     <style>
-        /* Небольшие правки, чтобы убрать лишние кнопки фрагмента */
-        .tm-header-actions-wide { display: none; }
+        /* Задаем переменные с картинками в base64, чтобы они 100% загрузились */
+        :root {
+            --image-url-logo-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0L24 6V18L12 24L0 18V6L12 0Z" fill="%230098EA"/><path d="M12 7L17 9.5V14.5L12 17L7 14.5V9.5L12 7Z" fill="%23FFFFFF"/></svg>');
+            --image-url-logo-text: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><text x="0" y="15" font-family="Roboto, sans-serif" font-size="20" font-weight="900" fill="white" letter-spacing="1">FRAGMENT</text></svg>');
+            --image-url-ton-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%230098EA"/><path d="M12 5L15.5 10H20L12 19L4 10H8.5L12 5Z" fill="%23FFFFFF"/></svg>');
+            --image-url-search: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%238e9ba9" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+            --image-url-header-menu: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>');
+            --image-url-main-search: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%238e9ba9" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+        }
+        
+        /* Фикс, чтобы кнопка не была растянутой */
+        .tm-section-buttons .btn-primary {
+            font-size: 15px;
+            padding: 14px;
+        }
     </style>
 </head>
-<body class="emoji_image">
+<body class="emoji_image no-transition">
 
+    <!-- Шапка -->
     <header class="tm-header">
         <div class="tm-header-logo">
             <a href="#" class="tm-logo js-logo" style="pointer-events: none;">
@@ -47,7 +61,7 @@
                             <span class="domain">.t.me</span>
                         </span>
                     </span>
-                    <span class="tm-section-header-status tm-status-claimed">Claimed</span>
+                    <span class="tm-section-header-status tm-status-avail">Claimed</span>
                 </h2>
             </div>
             
