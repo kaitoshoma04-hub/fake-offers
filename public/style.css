@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+    --bg-color: #121519;
+    --box-color: #1c232b;
+    --border-color: #2d3640;
+    --text-main: #ffffff;
+    --text-muted: #8b95a5;
+    --accent-blue: #0098ea;
+    --accent-green: #00ff64;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Шапка */
+.tm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.tm-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tm-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Основной контент */
+.tm-main {
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Заголовок */
+.tm-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 24px 0;
+}
+.tm-section-header-domain {
+    font-size: 32px;
+    font-weight: 700;
+}
+.tm-status-badge {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(0, 255, 100, 0.15);
+    color: var(--accent-green);
+}
+
+/* Блоки */
+.tm-section-box {
+    background-color: var(--box-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+/* Описание офера */
+.tm-offer-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+.tm-offer-desc b { color: var(--text-main); }
+.tm-offer-desc a { color: var(--accent-blue); text-decoration: none; }
+.tm-offer-desc .ton-icon { width: 16px; height: 16px; vertical-align: text-bottom; margin: 0 2px; }
+
+/* Таблицы */
+.tm-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tm-table th {
+    text-align: left;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+.tm-table td {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 15px;
+    font-weight: 500;
+}
+.tm-table tr:last-child td {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.tm-table td:last-child { text-align: right; }
+.tm-accent { color: var(--accent-blue); }
+
+/* Таймер */
+.tm-countdown-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: var(--text-muted);
+}
+.tm-countdown-timer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+.tm-timer-box {
+    background-color: var(--bg-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    min-width: 40px;
+    text-align: center;
+}
+.tm-timer-sep { font-weight: 700; color: var(--text-muted); }
+
+/* Кнопка */
+.tm-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--accent-blue);
+    color: var(--text-main);
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 24px;
+}
+.tm-btn:hover { background-color: #0088d1; }
+.tm-btn:disabled { background-color: var(--border-color); color: var(--text-muted); cursor: not-allowed; }
+
+/* Заголовки таблиц истории */
+.tm-section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 16px 0;
+}
